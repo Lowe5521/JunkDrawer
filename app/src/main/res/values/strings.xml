@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Junk Drawer</string>
+    <string name="junk_drawer">Junk Drawer</string>
+    <string name="recycler_view">Recycler View</string>
+    <string name="recycler_view_activity">Recycler View Activity</string>
+    <string name="display_overlays">Display Overlays!</string>
+</resources>

@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jonkoester.junkdrawer.HelperOverlay xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/holo_red_dark">
 
     <TextView
         android:id="@+id/view_helper_overlay_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title Text"
-        android:textSize="36sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/view_helper_overlay_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Message Text"
-        android:textSize="28sp" />
+        android:textSize="10sp" />
 
-</com.jonkoester.junkdrawer.HelperOverlay>
+    <Button
+        android:id="@+id/view_helper_overlay_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"/>
+
+</LinearLayout>

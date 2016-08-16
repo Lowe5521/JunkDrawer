@@ -4,19 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends Activity {
 
-    @BindView(R.id.act_main_recycler_view_button)
-    Button recycleViewButton;
     @BindView(R.id.act_main_overlay_button)
     Button overlayButton;
+
+    private enum ActivityName {
+        OVERLAY_FUN
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,26 +24,22 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        recycleViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveToRecyclerViewActivity();
-            }
-        });
-
         overlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayOverlayHelpers();
+                moveToScreen(ActivityName.OVERLAY_FUN);
             }
         });
     }
 
-    protected void moveToRecyclerViewActivity() {
-        startActivity(new Intent(this, RecyclerViewActivity.class));
-    }
+    private void moveToScreen(ActivityName overlayFun) {
+        switch (overlayFun) {
+            case OVERLAY_FUN:
+                startActivity(new Intent(this, HelperOverlayActivity.class));
+                break;
 
-    protected void displayOverlayHelpers() {
-        addContentView(new HelperOverlay(this), new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            default:
+                break;
+        }
     }
 }

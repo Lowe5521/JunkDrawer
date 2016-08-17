@@ -4,24 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/overlay_helper_fun"
-            android:textSize="36sp" />
+            android:text="@string/overlay_popup_fun"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="36sp"/>
 
         <TableLayout
             android:id="@+id/act_overlay_table_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="100dp">
+            android:layout_centerInParent="true">
 
             <TableRow>
 
@@ -65,6 +65,6 @@
 
         </TableLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>

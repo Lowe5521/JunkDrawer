@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HelperOverlay extends LinearLayout {
+public class HelperPopup extends LinearLayout {
 
     @BindView(R.id.view_helper_overlay_title)
     TextView titleTV;
@@ -26,18 +27,26 @@ public class HelperOverlay extends LinearLayout {
         LEFT, RIGHT, ABOVE, BELOW
     }
 
-    public HelperOverlay(Context context) {
+    public HelperPopup(Context context) {
         this(context, null);
     }
 
-    public HelperOverlay(Context context, AttributeSet attrs) {
+    public HelperPopup(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public HelperOverlay(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HelperPopup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr, 0);
 
         init(context);
+    }
+
+    public HelperPopup(Context context, String title, String message) {
+        super(context);
+
+        init(context);
+        setTitle(title);
+        setMessage(message);
     }
 
     private void init(Context context) {
@@ -54,23 +63,32 @@ public class HelperOverlay extends LinearLayout {
         messageTV.setText(message);
     }
 
-    public void aboveView(View view, ViewGroup root) {
+    //region Helper methods for positioning the helper overlay
+    public void aboveView(View view, FrameLayout root) {
         positionOverlay(Direction.ABOVE, view, root);
     }
 
-    public void toLeftOf(View view, ViewGroup root) {
+    public void toLeftOf(View view, FrameLayout root) {
         positionOverlay(Direction.LEFT, view, root);
     }
 
-    public void toRightOf(View view, ViewGroup root) {
+    public void toRightOf(View view, FrameLayout root) {
         positionOverlay(Direction.RIGHT, view, root);
     }
 
-    public void belowView(View view, ViewGroup root) {
+    public void belowView(View view, FrameLayout root) {
         positionOverlay(Direction.BELOW, view, root);
     }
+    //endregion
 
-    private void positionOverlay(Direction direction, View view, ViewGroup root) {
+    /**
+     * Method that detects and places helper popup
+     *
+     * @param direction This enum denotes whether the helper popup will be above, below, left or right of the view
+     * @param view The view that will act as the anchor for the helper popup
+     * @param root This is the top level view of the activity/fragment
+     */
+    private void positionOverlay(Direction direction, View view, FrameLayout root) {
         root.addView(this);
 
         view.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);

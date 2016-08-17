@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
     private void moveToScreen(ActivityName overlayFun) {
         switch (overlayFun) {
             case OVERLAY_FUN:
-                startActivity(new Intent(this, HelperOverlayActivity.class));
+                startActivity(new Intent(this, HelperPopupActivity.class));
                 break;
 
             default:

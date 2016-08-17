@@ -1,10 +1,13 @@
-package com.jonkoester.junkdrawer;
+package com.jonkoester.junkdrawer.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TableLayout;
+
+import com.jonkoester.junkdrawer.HelperPopup;
+import com.jonkoester.junkdrawer.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +31,7 @@ public class HelperPopupActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_helper_overlay);
+        setContentView(R.layout.activity_helper_popup);
         ButterKnife.bind(this);
 
         root = (FrameLayout) findViewById(R.id.overlay_fun_activity);

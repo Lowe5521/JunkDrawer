@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jonkoester.junkdrawer.MainActivity">
+    tools:context=".activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,11 +24,17 @@
             android:textSize="36sp"/>
 
         <Button
-            android:id="@+id/act_main_overlay_button"
+            android:id="@+id/act_main_overlay_popup_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
-            android:text="@string/display_overlays" />
+            android:text="@string/overlay_popup_fun" />
+
+        <Button
+            android:id="@+id/act_main_screen_overlay_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/screen_overlay"/>
 
     </LinearLayout>
 </FrameLayout>

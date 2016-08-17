@@ -51,7 +51,7 @@ public class HelperPopup extends LinearLayout {
 
     private void init(Context context) {
         setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        inflate(context, R.layout.view_helper_overlay, this);
+        inflate(context, R.layout.view_helper_popup, this);
         ButterKnife.bind(this);
     }
 

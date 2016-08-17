@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/act_screen_overlay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/overlay_fun_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/screen_overlays_sweet"
+            android:textColor="@android:color/black"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/overlay_fun_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Over here!"
+            android:textColor="@android:color/black"
+            android:layout_centerVertical="true"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/overlay_fun_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No, over here!"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="350dp"
+            android:layout_alignParentEnd="true"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/overlay_fun_tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WTF? What about me?!"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

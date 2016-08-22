@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -23,8 +25,12 @@ public class HelperPopup extends LinearLayout {
     @BindView(R.id.view_helper_overlay_button)
     Button dismissButton;
 
-    private enum Direction {
-        LEFT, RIGHT, ABOVE, BELOW
+    private enum DirectionX {
+        LEFT, CENTER, RIGHT
+    }
+
+    private enum DirectionY {
+        ABOVE, CENTER, BELOW
     }
 
     public HelperPopup(Context context) {
@@ -64,34 +70,49 @@ public class HelperPopup extends LinearLayout {
     }
 
     //region Helper methods for positioning the helper overlay
-    public void aboveView(View view, FrameLayout root) {
-        positionOverlay(Direction.ABOVE, view, root);
+    public void aboveCenterView(View view, FrameLayout root) {
+        positionOverlay(DirectionX.CENTER, DirectionY.ABOVE, view, root);
+    }
+
+    public void aboveLeftView(View view, FrameLayout root) {
+        positionOverlay(DirectionX.LEFT, DirectionY.ABOVE, view, root);
+    }
+
+    public void aboveRightView(View view, FrameLayout root) {
+        positionOverlay(DirectionX.RIGHT, DirectionY.ABOVE, view, root);
     }
 
     public void toLeftOf(View view, FrameLayout root) {
-        positionOverlay(Direction.LEFT, view, root);
+        positionOverlay(DirectionX.LEFT, DirectionY.CENTER, view, root);
     }
 
     public void toRightOf(View view, FrameLayout root) {
-        positionOverlay(Direction.RIGHT, view, root);
+        positionOverlay(DirectionX.RIGHT, DirectionY.CENTER, view, root);
     }
 
-    public void belowView(View view, FrameLayout root) {
-        positionOverlay(Direction.BELOW, view, root);
+    public void belowCenterView(View view, FrameLayout root) {
+        positionOverlay(DirectionX.CENTER, DirectionY.BELOW, view, root);
+    }
+
+    public void belowLeftView(View view, FrameLayout root) {
+        positionOverlay(DirectionX.LEFT, DirectionY.BELOW, view, root);
+    }
+
+    public void belowRightView(View view, FrameLayout root) {
+        positionOverlay(DirectionX.RIGHT, DirectionY.BELOW, view, root);
     }
     //endregion
 
     /**
      * Method that detects and places helper popup
      *
-     * @param direction This enum denotes whether the helper popup will be above, below, left or right of the view
+     * @param xDirection This enum denotes whether the helper popup will be to the left, the right, or centered with the view
+     * @param yDirection This enum denotes whether the helper popup will be above, below, or centered with the view
      * @param view The view that will act as the anchor for the helper popup
      * @param root This is the top level view of the activity/fragment
      */
-    private void positionOverlay(Direction direction, View view, FrameLayout root) {
+    private void positionOverlay(DirectionX xDirection, DirectionY yDirection, View view, FrameLayout root) {
         root.addView(this);
-
-        view.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         Rect offsetViewBounds = new Rect();
@@ -101,23 +122,35 @@ public class HelperPopup extends LinearLayout {
         int relativeLeft = offsetViewBounds.left;
         int relativeTop = offsetViewBounds.top;
 
-        switch (direction) {
-            case ABOVE:
-                drawAtCoords(relativeLeft, relativeTop - getMeasuredHeight());
-                break;
+        switch (xDirection) {
             case LEFT:
-                drawAtCoords(relativeLeft - getMeasuredWidth(), relativeTop);
+                relativeLeft = relativeLeft - getMeasuredWidth();
                 break;
             case RIGHT:
-                drawAtCoords(relativeLeft + view.getMeasuredWidth(), relativeTop);
+                relativeLeft = relativeLeft + view.getWidth();
                 break;
-            case BELOW:
-                drawAtCoords(relativeLeft, relativeTop + view.getMeasuredHeight());
+            case CENTER:
+                relativeLeft = relativeLeft + findCenterOffset(view.getWidth(), getMeasuredWidth());
                 break;
             default:
                 break;
         }
 
+        switch (yDirection) {
+            case ABOVE:
+                relativeTop = relativeTop - getMeasuredHeight();
+                break;
+            case BELOW:
+                relativeTop = relativeTop + view.getHeight();
+                break;
+            case CENTER:
+                relativeTop = relativeTop + findCenterOffset(view.getWidth(), getMeasuredWidth());
+                break;
+            default:
+                break;
+        }
+
+        drawAtCoords(relativeLeft, relativeTop);
     }
 
     public void drawAtCoords(float x, float y) {
@@ -127,6 +160,21 @@ public class HelperPopup extends LinearLayout {
 
     @OnClick(R.id.view_helper_overlay_button)
     void dismissOverlay() {
-        ((ViewGroup) getParent()).removeView(this);
+        if (getParent() != null) {
+            ((ViewGroup) getParent()).removeView(this);
+        }
+    }
+
+    private int findCenterOffset(float viewHeight, float helperHeight) {
+        return Math.round((viewHeight / 2) - (helperHeight / 2));
+    }
+
+    public static void dismissOverlays(ArrayList<HelperPopup> helperPopups) {
+        if (helperPopups != null) {
+            for (HelperPopup helperPopup : helperPopups) {
+                helperPopup.dismissOverlay();
+            }
+            helperPopups.clear();
+        }
     }
 }

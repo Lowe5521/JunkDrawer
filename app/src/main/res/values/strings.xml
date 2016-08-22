@@ -8,4 +8,9 @@
     <string name="overlay_popup_fun">Overlay Popup Fun!</string>
     <string name="screen_overlay">Screen Overlay!</string>
     <string name="screen_overlays_sweet">Screen Overlays! Sweet!</string>
+    <string name="clear">Clear</string>
+    <string name="above_left">Above Left</string>
+    <string name="above_right">Above Right</string>
+    <string name="below_left">Below Left</string>
+    <string name="below_right">Below Right</string>
 </resources>

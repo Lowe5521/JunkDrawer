@@ -3,13 +3,13 @@ package com.jonkoester.junkdrawer.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import com.jonkoester.junkdrawer.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends Activity {
 
@@ -17,9 +17,11 @@ public class MainActivity extends Activity {
     Button overlayPopupButton;
     @BindView(R.id.act_main_screen_overlay_button)
     Button screenOverlayButton;
+    @BindView(R.id.act_main_screen_overlay_screen_and_popups)
+    Button overlayAndPopupButton;
 
     private enum ActivityName {
-        OVERLAY_POPUP, OVERLAY_SCREEN
+        OVERLAY_POPUP, OVERLAY_SCREEN, OVERLAY_SCREEN_AND_POPUP
     }
 
     @Override
@@ -27,20 +29,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        overlayPopupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveToScreen(ActivityName.OVERLAY_POPUP);
-            }
-        });
-
-        screenOverlayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveToScreen(ActivityName.OVERLAY_SCREEN);
-            }
-        });
     }
 
     private void moveToScreen(ActivityName overlayFun) {
@@ -53,8 +41,28 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(this, ScreenOverlayActivity.class));
                 break;
 
+            case OVERLAY_SCREEN_AND_POPUP:
+                startActivity(new Intent(this, OverlayAndPopupActivity.class));
+                break;
+
             default:
                 break;
         }
+    }
+
+    @OnClick(R.id.act_main_overlay_popup_button)
+    void onPopUpClick() {
+        moveToScreen(ActivityName.OVERLAY_POPUP);
+    }
+
+    @OnClick(R.id.act_main_screen_overlay_button)
+    void onOverlayClick() {
+        moveToScreen(ActivityName.OVERLAY_SCREEN);
+
+    }
+
+    @OnClick(R.id.act_main_screen_overlay_screen_and_popups)
+    void onOverlayAndPopupClick() {
+        moveToScreen(ActivityName.OVERLAY_SCREEN_AND_POPUP);
     }
 }

@@ -13,4 +13,5 @@
     <string name="above_right">Above Right</string>
     <string name="below_left">Below Left</string>
     <string name="below_right">Below Right</string>
+    <string name="overlay_screen_with_popups">Overlay Screen WITH Popups!</string>
 </resources>

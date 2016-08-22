@@ -15,8 +15,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.HelperPopupActivity"/>
-        <activity android:name=".activity.ScreenOverlayActivity"/>
+        <activity android:name=".activity.HelperPopupActivity" />
+        <activity android:name=".activity.ScreenOverlayActivity" />
+        <activity android:name=".activity.OverlayAndPopupActivity" />
     </application>
 
 </manifest>

@@ -18,6 +18,7 @@
         <activity android:name=".activity.HelperPopupActivity" />
         <activity android:name=".activity.ScreenOverlayActivity" />
         <activity android:name=".activity.OverlayAndPopupActivity" />
+        <activity android:name=".version2.VersionTwoActivity" />
     </application>
 
 </manifest>

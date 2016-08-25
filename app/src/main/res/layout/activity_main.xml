@@ -42,5 +42,11 @@
             android:layout_height="wrap_content"
             android:text="@string/overlay_screen_with_popups"/>
 
+        <Button
+            android:id="@+id/act_version_two_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Version Two Overlay"/>
+
     </LinearLayout>
 </FrameLayout>

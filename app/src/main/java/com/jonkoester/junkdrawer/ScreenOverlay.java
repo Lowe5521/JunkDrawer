@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 public class ScreenOverlay extends RelativeLayout {
 
     private ArrayList<View> viewList;
-    private RectF rect = new RectF();
+    private RectF rectF = new RectF();
     private Path clipPath = new Path();
 
     public ScreenOverlay(Context context) {
@@ -59,9 +59,9 @@ public class ScreenOverlay extends RelativeLayout {
             float y = v.getY();
             float x2 = v.getX() + v.getMeasuredWidth();
             float y2 = v.getY() + v.getMeasuredHeight();
-            rect.set(x, y, x2, y2);
+            rectF.set(x, y, x2, y2);
 
-            clipPath.addRoundRect(rect, 15f, 15f, Path.Direction.CW);
+            clipPath.addRoundRect(rectF, 15f, 15f, Path.Direction.CW);
             canvas.clipPath(clipPath, Region.Op.DIFFERENCE);
         }
     }

@@ -19,6 +19,7 @@
         <activity android:name=".activity.ScreenOverlayActivity" />
         <activity android:name=".activity.OverlayAndPopupActivity" />
         <activity android:name=".version2.VersionTwoActivity" />
+        <activity android:name=".activity.AnnotationActivity" />
     </application>
 
 </manifest>

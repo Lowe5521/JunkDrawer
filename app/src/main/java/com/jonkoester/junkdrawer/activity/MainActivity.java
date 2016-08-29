@@ -22,9 +22,12 @@ public class MainActivity extends Activity {
     Button overlayAndPopupButton;
     @BindView(R.id.act_version_two_button)
     Button versionTwoButton;
+    @BindView(R.id.act_annotation_button)
+    Button annotationButton;
 
     private enum ActivityName {
-        OVERLAY_POPUP, OVERLAY_SCREEN, OVERLAY_SCREEN_AND_POPUP, VERSION_TWO
+        OVERLAY_POPUP, OVERLAY_SCREEN, OVERLAY_SCREEN_AND_POPUP, VERSION_TWO,
+        ANNOTATION_FUN
     }
 
     @Override
@@ -52,6 +55,9 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(this, VersionTwoActivity.class));
                 break;
 
+            case ANNOTATION_FUN:
+                startActivity(new Intent(this, AnnotationActivity.class));
+
             default:
                 break;
         }
@@ -76,5 +82,10 @@ public class MainActivity extends Activity {
     @OnClick(R.id.act_version_two_button)
     void onVersionTwoClick() {
         moveToScreen(ActivityName.VERSION_TWO);
+    }
+
+    @OnClick(R.id.act_annotation_button)
+    void onAnnotationClick() {
+        moveToScreen(ActivityName.ANNOTATION_FUN);
     }
 }

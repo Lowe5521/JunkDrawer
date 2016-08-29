@@ -3,8 +3,6 @@ package com.jonkoester.junkdrawer;
 import android.app.Activity;
 import android.widget.TextView;
 
-import com.jonkoester.junkdrawer.activity.CustomAnnotation;
-
 import java.lang.reflect.Field;
 
 public class AnnotationsUtility {

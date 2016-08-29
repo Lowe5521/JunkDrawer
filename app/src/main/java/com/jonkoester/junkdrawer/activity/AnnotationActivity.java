@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.jonkoester.junkdrawer.AnnotationsUtility;
+import com.jonkoester.junkdrawer.CustomAnnotation;
 import com.jonkoester.junkdrawer.R;
 
 import butterknife.BindView;

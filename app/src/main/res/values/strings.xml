@@ -1,17 +1,5 @@
 <resources>
     <string name="app_name">Junk Drawer</string>
-    <string name="ok">Ok</string>
-    <string name="above">Above</string>
-    <string name="left">Left</string>
-    <string name="right">Right</string>
-    <string name="below">Below</string>
-    <string name="overlay_popup_fun">Overlay Popup Fun!</string>
-    <string name="screen_overlay">Screen Overlay!</string>
-    <string name="screen_overlays_sweet">Screen Overlays! Sweet!</string>
+    <string name="ok">OK</string>
     <string name="clear">Clear</string>
-    <string name="above_left">Above Left</string>
-    <string name="above_right">Above Right</string>
-    <string name="below_left">Below Left</string>
-    <string name="below_right">Below Right</string>
-    <string name="overlay_screen_with_popups">Overlay Screen WITH Popups!</string>
 </resources>

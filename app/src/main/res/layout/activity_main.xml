@@ -24,25 +24,6 @@
             android:textSize="36sp"/>
 
         <Button
-            android:id="@+id/act_main_overlay_popup_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:text="@string/overlay_popup_fun" />
-
-        <Button
-            android:id="@+id/act_main_screen_overlay_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/screen_overlay"/>
-
-        <Button
-            android:id="@+id/act_main_screen_overlay_screen_and_popups"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/overlay_screen_with_popups"/>
-
-        <Button
             android:id="@+id/act_version_two_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

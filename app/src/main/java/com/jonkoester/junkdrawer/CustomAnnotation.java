@@ -1,4 +1,4 @@
-package com.jonkoester.junkdrawer.activity;
+package com.jonkoester.junkdrawer;
 
 import android.support.annotation.IdRes;
 

@@ -3,6 +3,7 @@ package com.jonkoester.junkdrawer.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.jonkoester.junkdrawer.R;
@@ -13,8 +14,14 @@ import butterknife.ButterKnife;
 
 public class VersionTwoActivity extends Activity {
 
-    @BindView(R.id.act_vTwo_tv1)
-    TextView textView1;
+    @BindView(R.id.act_vTwo_fNameTV)
+    TextView firstNameTV;
+    @BindView(R.id.act_vTwo_genderTV)
+    TextView genderTV;
+    @BindView(R.id.act_vTwo_personalTableLayout)
+    TableLayout personalTableLayout;
+    @BindView(R.id.act_vTwo_tv2)
+    TextView testTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,8 @@ public class VersionTwoActivity extends Activity {
     }
 
     private void doTheOverlayStuff() {
-        addContentView(new VersionTwoOverlay(this, textView1), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        addContentView(new VersionTwoOverlay(this, genderTV), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        addContentView(new VersionTwoOverlay(this, personalTableLayout), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        addContentView(new VersionTwoOverlay(this, testTwo), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 }

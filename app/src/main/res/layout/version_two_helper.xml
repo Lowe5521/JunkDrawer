@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:maxWidth="200dp"
         android:text="Sample Title"
-        android:textSize="36sp"
+        android:textSize="24sp"
         tools:text="Helper Title" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:maxLines="4"
         android:maxWidth="200dp"
         android:text="Sample Message that could possibly go on forever and ever and ever and ever and ever if I let it do that, but we don't want to let it do that, now do we? I mean, how irresponsible, as a software developer, would that be? My QA team would have coniption fits. Is 'coniption' even a word? I highly doubt that is the way you spell it if it is a word. Well, I think that this text is sufficiently long enough now that I could test any silly stuff that I wanted to with it. Dangling participle."
-        android:textSize="24sp"
+        android:textSize="16sp"
         tools:text="Helper message" />
 
 </LinearLayout>

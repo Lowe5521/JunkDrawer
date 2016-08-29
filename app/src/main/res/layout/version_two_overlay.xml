@@ -3,13 +3,14 @@
     android:id="@+id/vTwo_overlay_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/trans_black">
+    android:background="@color/trans_white">
 
     <Button
+        android:id="@+id/vTwo_overlay_next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="Next" />
+        android:text="@string/ok_got_it" />
 
 </RelativeLayout>

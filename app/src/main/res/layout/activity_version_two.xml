@@ -4,14 +4,129 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@android:color/holo_green_dark">
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/act_vTwo_tv1"
+        android:id="@+id/act_vTwo_titleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Testing Center"
-        android:textSize="36sp"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="48dp"
+        android:text="Screen Title"
+        android:textSize="36sp" />
+
+    <TableLayout
+        android:id="@+id/act_vTwo_personalTableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal Info:"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/act_vTwo_fNameTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="First: Jonathan"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/act_vTwo_mNameTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Middle: Dale"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/act_vTwo_lNameTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Last: Koester"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/act_vTwo_genderTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender: Male"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/act_vTwo_ageTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age: 32"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/act_vTwo_bdayTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Birth: 03/30/84"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/act_vTwo_addressTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address: 535 Country Chase Dr"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/act_vTwo_cityTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="City: Lake Saint Louis"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/act_vTwo_stateTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="State: MO"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/act_vTwo_zipTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Zip: 63367"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/act_vTwo_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:text="Testing Two"
+        android:textSize="36sp" />
 
 </LinearLayout>

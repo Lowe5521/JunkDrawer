@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.jonkoester.junkdrawer.R;
+import com.jonkoester.junkdrawer.TutorialDialogModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,10 +29,8 @@ public class VersionTwoOverlay extends RelativeLayout {
     private int[] screenPos = new int[2];
     private int[] screenOffset;
 
-    // Casing the null as an AttributeSet seems really really dirty. I'll come back
-    // to this if the rest of my stuff works
     public VersionTwoOverlay(Context context) {
-        this(context, (AttributeSet) null);
+        super(context);
     }
 
     public VersionTwoOverlay(Context context, AttributeSet attrs) {
@@ -51,14 +50,14 @@ public class VersionTwoOverlay extends RelativeLayout {
 
     //region programmatic constructor for drawing the stuff
 
-    public VersionTwoOverlay(Context context, View view) {
+    public VersionTwoOverlay(Context context, TutorialDialogModel tutorialDialogModel) {
         super(context);
 
         inflate(context, R.layout.version_two_overlay, this);
         setWillNotDraw(false);
         ButterKnife.bind(this);
 
-        this.view = view;
+        this.view = tutorialDialogModel.getHighLightedView();
     }
 
     //endregion
@@ -85,9 +84,6 @@ public class VersionTwoOverlay extends RelativeLayout {
 
     private void unMaskView(Canvas canvas, View view) {
         if (view != null) {
-//            view.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-//            Rect rect = new Rect();
-//            view.getLocalVisibleRect(rect);
             rectF.set(getXOffset(), getYOffset(), getXOffset() + view.getWidth(), getYOffset() + view.getHeight());
             clipPath.addRoundRect(rectF, 15f, 15f, Path.Direction.CW);
             canvas.clipPath(clipPath, Region.Op.DIFFERENCE);

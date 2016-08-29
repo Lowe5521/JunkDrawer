@@ -7,6 +7,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.jonkoester.junkdrawer.R;
+import com.jonkoester.junkdrawer.TutorialDialogModel;
 import com.jonkoester.junkdrawer.version2.VersionTwoOverlay;
 
 import butterknife.BindView;
@@ -33,8 +34,6 @@ public class VersionTwoActivity extends Activity {
     }
 
     private void doTheOverlayStuff() {
-//        addContentView(new VersionTwoOverlay(this, genderTV), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-//        addContentView(new VersionTwoOverlay(this, personalTableLayout), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        addContentView(new VersionTwoOverlay(this, testTwo), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        addContentView(new VersionTwoOverlay(this, new TutorialDialogModel(testTwo, null, null, null)), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 }

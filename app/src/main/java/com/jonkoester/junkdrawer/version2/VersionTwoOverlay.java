@@ -28,24 +28,18 @@ public class VersionTwoOverlay extends RelativeLayout {
     private int[] screenPos = new int[2];
     private int[] screenOffset;
     private TutorialDialogModel tutorialDialogModel;
+    private VersionTwoHelper versionTwoHelper;
 
     public VersionTwoOverlay(Context context) {
         super(context);
     }
 
     public VersionTwoOverlay(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public VersionTwoOverlay(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        init(context);
-    }
-
-    private void init(Context context) {
-        inflate(context, R.layout.version_two_overlay, this);
-        ButterKnife.bind(this);
     }
 
     //region programmatic constructor for drawing the stuff
@@ -66,20 +60,18 @@ public class VersionTwoOverlay extends RelativeLayout {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        initScreenPositionAndOffsets();
+        unMaskView(canvas, tutorialDialogModel.getHighLightedView());
+        createAndPositionHelper();
+    }
+
+    private void initScreenPositionAndOffsets() {
         if (screenOffset == null) {
             tutorialDialogModel.getHighLightedView().getLocationOnScreen(screenPos);
 
             screenOffset = new int[2];
             getLocationOnScreen(screenOffset);
         }
-
-        unMaskView(canvas, tutorialDialogModel.getHighLightedView());
-
-        VersionTwoHelper versionTwoHelper = new VersionTwoHelper(getContext(), tutorialDialogModel.getHelperTitle(), tutorialDialogModel.getHelperDescription());
-        versionTwoHelper.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        versionTwoHelper.setX(getXOffset());
-        versionTwoHelper.setY(getYOffset() - versionTwoHelper.getMeasuredHeight());
-        addView(versionTwoHelper);
     }
 
     private void unMaskView(Canvas canvas, View view) {
@@ -90,14 +82,17 @@ public class VersionTwoOverlay extends RelativeLayout {
         }
     }
 
-    @OnClick(R.id.vTwo_overlay_next_button)
-    void onNextClick() {
-        ((ViewGroup) getParent()).removeView(this);
+    private void createAndPositionHelper() {
+        if (versionTwoHelper == null) {
+            versionTwoHelper = new VersionTwoHelper(getContext(), tutorialDialogModel.getHelperTitle(), tutorialDialogModel.getHelperDescription());
+            versionTwoHelper.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            versionTwoHelper.setX(getXOffset());
+            versionTwoHelper.setY(getYOffset() - versionTwoHelper.getMeasuredHeight());
+            addView(versionTwoHelper);
+        }
     }
 
-
     /**
-     *
      * @return the x-coordinate to account for any views on the screen not included in the window
      */
     private float getXOffset() {
@@ -110,7 +105,6 @@ public class VersionTwoOverlay extends RelativeLayout {
     }
 
     /**
-     *
      * @return the y-coordinate to account for any views on the screen not included in the window
      */
     private float getYOffset() {
@@ -120,5 +114,10 @@ public class VersionTwoOverlay extends RelativeLayout {
         }
 
         return yOffset;
+    }
+
+    @OnClick(R.id.vTwo_overlay_next_button)
+    void onNextClick() {
+        ((ViewGroup) getParent()).removeView(this);
     }
 }

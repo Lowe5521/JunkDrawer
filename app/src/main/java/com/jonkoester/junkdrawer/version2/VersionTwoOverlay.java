@@ -86,10 +86,32 @@ public class VersionTwoOverlay extends RelativeLayout {
         if (versionTwoHelper == null) {
             versionTwoHelper = new VersionTwoHelper(getContext(), tutorialDialogModel.getHelperTitle(), tutorialDialogModel.getHelperDescription());
             versionTwoHelper.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-            versionTwoHelper.setX(getXOffset());
-            versionTwoHelper.setY(getYOffset() - versionTwoHelper.getMeasuredHeight());
+            positionHelper();
             addView(versionTwoHelper);
         }
+    }
+
+    private void positionHelper() {
+        float x = getXOffset();
+        float y = getYOffset();
+
+        switch (tutorialDialogModel.getHelperDirection()) {
+            case TOP:
+                y -= versionTwoHelper.getMeasuredHeight();
+                break;
+            case BOTTOM:
+                y += tutorialDialogModel.getHighLightedView().getHeight();
+                break;
+            case LEFT:
+                x -= versionTwoHelper.getMeasuredWidth();
+                break;
+            case RIGHT:
+                x += tutorialDialogModel.getHighLightedView().getWidth();
+                break;
+        }
+
+        versionTwoHelper.setX(x);
+        versionTwoHelper.setY(y);
     }
 
     /**

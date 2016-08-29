@@ -23,11 +23,11 @@ public class VersionTwoOverlay extends RelativeLayout {
     @BindView(R.id.vTwo_overlay_next_button)
     Button nextButton;
 
-    private View view;
     private RectF rectF = new RectF();
     private Path clipPath = new Path();
     private int[] screenPos = new int[2];
     private int[] screenOffset;
+    private TutorialDialogModel tutorialDialogModel;
 
     public VersionTwoOverlay(Context context) {
         super(context);
@@ -57,7 +57,7 @@ public class VersionTwoOverlay extends RelativeLayout {
         setWillNotDraw(false);
         ButterKnife.bind(this);
 
-        this.view = tutorialDialogModel.getHighLightedView();
+        this.tutorialDialogModel = tutorialDialogModel;
     }
 
     //endregion
@@ -67,15 +67,15 @@ public class VersionTwoOverlay extends RelativeLayout {
         super.onDraw(canvas);
 
         if (screenOffset == null) {
-            view.getLocationOnScreen(screenPos);
+            tutorialDialogModel.getHighLightedView().getLocationOnScreen(screenPos);
 
             screenOffset = new int[2];
             getLocationOnScreen(screenOffset);
         }
 
-        unMaskView(canvas, view);
+        unMaskView(canvas, tutorialDialogModel.getHighLightedView());
 
-        VersionTwoHelper versionTwoHelper = new VersionTwoHelper(getContext());
+        VersionTwoHelper versionTwoHelper = new VersionTwoHelper(getContext(), tutorialDialogModel.getHelperTitle(), tutorialDialogModel.getHelperDescription());
         versionTwoHelper.measure(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         versionTwoHelper.setX(getXOffset());
         versionTwoHelper.setY(getYOffset() - versionTwoHelper.getMeasuredHeight());

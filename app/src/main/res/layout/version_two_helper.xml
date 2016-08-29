@@ -18,7 +18,7 @@
         tools:text="Helper Title" />
 
     <TextView
-        android:id="@+id/vTwo_helper_message"
+        android:id="@+id/vTwo_helper_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="4"

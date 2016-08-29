@@ -125,8 +125,9 @@
         android:id="@+id/act_vTwo_tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="400dp"
         android:text="Testing Two"
+        android:layout_gravity="center_horizontal"
         android:textSize="36sp" />
 
 </LinearLayout>

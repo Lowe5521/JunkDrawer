@@ -5,19 +5,19 @@ import android.view.View;
 public class TutorialDialogModel {
     private View highLightedView;
     private String helperTitle;
-    private String helperMessage;
+    private String helperDescription;
     private Direction helperDirection;
 
     public enum Direction {
         TOP, RIGHT, BOTTOM, LEFT
     }
 
-    public TutorialDialogModel(View highLightedView, String helperTitle, String helperMessage, Direction helperDirection) {
+    public TutorialDialogModel(View highLightedView, String helperTitle, String helperDescription, Direction helperDirection) {
         super();
 
         this.highLightedView = highLightedView;
         this.helperTitle = helperTitle;
-        this.helperMessage = helperMessage;
+        this.helperDescription = helperDescription;
         this.helperDirection = helperDirection;
     }
 
@@ -25,31 +25,15 @@ public class TutorialDialogModel {
         return highLightedView;
     }
 
-    public void setHighLightedView(View highLightedView) {
-        this.highLightedView = highLightedView;
-    }
-
     public String getHelperTitle() {
         return helperTitle;
     }
 
-    public void setHelperTitle(String helperTitle) {
-        this.helperTitle = helperTitle;
-    }
-
-    public String getHelperMessage() {
-        return helperMessage;
-    }
-
-    public void setHelperMessage(String helperMessage) {
-        this.helperMessage = helperMessage;
+    public String getHelperDescription() {
+        return helperDescription;
     }
 
     public Direction getHelperDirection() {
         return helperDirection;
-    }
-
-    public void setHelperDirection(Direction helperDirection) {
-        this.helperDirection = helperDirection;
     }
 }

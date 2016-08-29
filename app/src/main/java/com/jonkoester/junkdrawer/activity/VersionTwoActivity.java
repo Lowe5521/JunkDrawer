@@ -34,6 +34,6 @@ public class VersionTwoActivity extends Activity {
     }
 
     private void doTheOverlayStuff() {
-        addContentView(new VersionTwoOverlay(this, new TutorialDialogModel(testTwo, null, null, null)), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        addContentView(new VersionTwoOverlay(this, new TutorialDialogModel(testTwo, "Test Title", "Test Description", null)), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 }

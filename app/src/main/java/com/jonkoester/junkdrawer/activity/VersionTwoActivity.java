@@ -10,6 +10,9 @@ import com.jonkoester.junkdrawer.R;
 import com.jonkoester.junkdrawer.TutorialDialogModel;
 import com.jonkoester.junkdrawer.version2.VersionTwoOverlay;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -34,7 +37,12 @@ public class VersionTwoActivity extends Activity {
     }
 
     private void doTheOverlayStuff() {
-        addContentView(new VersionTwoOverlay(this, new TutorialDialogModel(testTwo, "Test Title", "Test Description", TutorialDialogModel.Direction.RIGHT)), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-//        addContentView(new VersionTwoOverlay(this, new TutorialDialogModel(personalTableLayout, "Test Title", "Test Description", TutorialDialogModel.Direction.TOP)), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        Queue<TutorialDialogModel> testQ = new LinkedList<>();
+        testQ.add(new TutorialDialogModel(firstNameTV, "First Name!", "This is obviously where you put the first name", TutorialDialogModel.Direction.BOTTOM));
+        testQ.add(new TutorialDialogModel(genderTV, "Gender", "I remember the days when there were only two options", TutorialDialogModel.Direction.RIGHT));
+        testQ.add(new TutorialDialogModel(testTwo, "Test TV", "This is off in East Jesus for convenience", TutorialDialogModel.Direction.RIGHT));
+        testQ.add(new TutorialDialogModel(personalTableLayout, "Section Test", "Holy shit look at this section of the app!", TutorialDialogModel.Direction.BOTTOM));
+
+        addContentView(new VersionTwoOverlay(this, testQ), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 }

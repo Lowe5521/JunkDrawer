@@ -59,21 +59,24 @@
 
             <TextView
                 android:id="@+id/act_vTwo_genderTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Gender: Male"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/act_vTwo_ageTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Age: 32"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/act_vTwo_bdayTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Birth: 03/30/84"
                 android:textSize="24sp" />

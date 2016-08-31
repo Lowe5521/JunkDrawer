@@ -6,13 +6,14 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.jonkoester.junkdrawer.R;
 import com.jonkoester.junkdrawer.TutorialDialogModel;
+
+import java.util.Queue;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,10 +26,12 @@ public class VersionTwoOverlay extends RelativeLayout {
 
     private RectF rectF = new RectF();
     private Path clipPath = new Path();
+    private boolean removeExistingPath = false;
     private int[] screenPos = new int[2];
     private int[] screenOffset;
     private TutorialDialogModel tutorialDialogModel;
     private VersionTwoHelper versionTwoHelper;
+    private Queue<TutorialDialogModel> tutorialDialogModelQueue;
 
     public VersionTwoOverlay(Context context) {
         super(context);
@@ -44,14 +47,20 @@ public class VersionTwoOverlay extends RelativeLayout {
 
     //region programmatic constructor for drawing the stuff
 
-    public VersionTwoOverlay(Context context, TutorialDialogModel tutorialDialogModel) {
+    public VersionTwoOverlay(Context context, Queue<TutorialDialogModel> tutorialDialogModelQueue) {
         super(context);
 
         inflate(context, R.layout.version_two_overlay, this);
         setWillNotDraw(false);
         ButterKnife.bind(this);
 
-        this.tutorialDialogModel = tutorialDialogModel;
+        this.tutorialDialogModelQueue = tutorialDialogModelQueue;
+
+        if (tutorialDialogModelQueue != null &&
+                !tutorialDialogModelQueue.isEmpty()) {
+
+            tutorialDialogModel = tutorialDialogModelQueue.poll();
+        }
     }
 
     //endregion
@@ -61,22 +70,28 @@ public class VersionTwoOverlay extends RelativeLayout {
         super.onDraw(canvas);
 
         initScreenPositionAndOffsets();
-        unMaskView(canvas, tutorialDialogModel.getHighLightedView());
+        unMaskView(canvas);
         createAndPositionHelper();
     }
 
     private void initScreenPositionAndOffsets() {
-        if (screenOffset == null) {
-            tutorialDialogModel.getHighLightedView().getLocationOnScreen(screenPos);
+        tutorialDialogModel.getHighLightedView().getLocationOnScreen(screenPos);
 
+        if (screenOffset == null) {
             screenOffset = new int[2];
             getLocationOnScreen(screenOffset);
         }
     }
 
-    private void unMaskView(Canvas canvas, View view) {
-        if (view != null) {
-            rectF.set(getXOffset(), getYOffset(), getXOffset() + view.getWidth(), getYOffset() + view.getHeight());
+    private void unMaskView(Canvas canvas) {
+        if (tutorialDialogModel.getHighLightedView() != null) {
+            if (removeExistingPath) {
+                canvas.clipPath(clipPath, Region.Op.UNION);
+                clipPath.reset();
+                removeExistingPath = false;
+            }
+
+            rectF.set(getXOffset(), getYOffset(), getXOffset() + tutorialDialogModel.getHighLightedView().getWidth(), getYOffset() + tutorialDialogModel.getHighLightedView().getHeight());
             clipPath.addRoundRect(rectF, 15f, 15f, Path.Direction.CW);
             canvas.clipPath(clipPath, Region.Op.DIFFERENCE);
         }
@@ -140,6 +155,18 @@ public class VersionTwoOverlay extends RelativeLayout {
 
     @OnClick(R.id.vTwo_overlay_next_button)
     void onNextClick() {
-        ((ViewGroup) getParent()).removeView(this);
+        if (tutorialDialogModelQueue != null
+                && !tutorialDialogModelQueue.isEmpty()) {
+
+            // We remove and null out the helper to make sure it does not hang around in memory
+            removeView(versionTwoHelper);
+            versionTwoHelper = null;
+
+            removeExistingPath = true;
+            tutorialDialogModel = tutorialDialogModelQueue.poll();
+            requestLayout();
+        } else {
+            ((ViewGroup) getParent()).removeView(this);
+        }
     }
 }

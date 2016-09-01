@@ -33,6 +33,10 @@ public class VersionTwoOverlay extends RelativeLayout {
     private VersionTwoHelper versionTwoHelper;
     private Queue<TutorialDialogModel> tutorialDialogModelQueue;
 
+    private final static int CLIP_PATH_PADDING = 2;
+    private final static int HELPER_SPACING = 8;
+    private final static int CORNER_RADIUS = 12;
+
     public VersionTwoOverlay(Context context) {
         super(context);
     }
@@ -91,8 +95,11 @@ public class VersionTwoOverlay extends RelativeLayout {
                 removeExistingPath = false;
             }
 
-            rectF.set(getXOffset(), getYOffset(), getXOffset() + tutorialDialogModel.getHighLightedView().getWidth(), getYOffset() + tutorialDialogModel.getHighLightedView().getHeight());
-            clipPath.addRoundRect(rectF, 15f, 15f, Path.Direction.CW);
+            rectF.set(getXOffset() - CLIP_PATH_PADDING,
+                    getYOffset() - CLIP_PATH_PADDING,
+                    getXOffset() + tutorialDialogModel.getHighLightedView().getWidth() + CLIP_PATH_PADDING,
+                    getYOffset() + tutorialDialogModel.getHighLightedView().getHeight() + CLIP_PATH_PADDING);
+            clipPath.addRoundRect(rectF, CORNER_RADIUS, CORNER_RADIUS, Path.Direction.CW);
             canvas.clipPath(clipPath, Region.Op.DIFFERENCE);
         }
     }
@@ -112,17 +119,49 @@ public class VersionTwoOverlay extends RelativeLayout {
 
         switch (tutorialDialogModel.getHelperDirection()) {
             case TOP:
-                y -= versionTwoHelper.getMeasuredHeight();
+                y -= versionTwoHelper.getMeasuredHeight() - HELPER_SPACING;
                 break;
             case BOTTOM:
-                y += tutorialDialogModel.getHighLightedView().getHeight();
+                y += tutorialDialogModel.getHighLightedView().getHeight() + HELPER_SPACING;
                 break;
             case LEFT:
-                x -= versionTwoHelper.getMeasuredWidth();
+                x -= versionTwoHelper.getMeasuredWidth() - HELPER_SPACING;
                 break;
             case RIGHT:
-                x += tutorialDialogModel.getHighLightedView().getWidth();
+                x += tutorialDialogModel.getHighLightedView().getWidth() + HELPER_SPACING;
                 break;
+            default:
+                break;
+        }
+
+        if (tutorialDialogModel.getHelperXAlignment() != null) {
+            switch (tutorialDialogModel.getHelperXAlignment()) {
+                case LEFT:
+                    break;
+                case RIGHT:
+                    x += (tutorialDialogModel.getHighLightedView().getWidth() - versionTwoHelper.getMeasuredWidth()) > 0 ? (tutorialDialogModel.getHighLightedView().getWidth() - versionTwoHelper.getMeasuredWidth()) : 0;
+                    break;
+                case CENTER:
+                    x += (tutorialDialogModel.getHighLightedView().getWidth() / 2) - (versionTwoHelper.getMeasuredWidth() / 2);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (tutorialDialogModel.getHelperYAlignment() != null) {
+            switch (tutorialDialogModel.getHelperYAlignment()) {
+                case TOP:
+                    break;
+                case BOTTOM:
+                    y += (tutorialDialogModel.getHighLightedView().getHeight() - versionTwoHelper.getMeasuredHeight()) > 0 ? (tutorialDialogModel.getHighLightedView().getHeight() - versionTwoHelper.getMeasuredHeight()) : 0;
+                    break;
+                case CENTER:
+                    y += (tutorialDialogModel.getHighLightedView().getHeight() / 2) - (versionTwoHelper.getMeasuredHeight() / 2);
+                    break;
+                default:
+                    break;
+            }
         }
 
         versionTwoHelper.setX(x);

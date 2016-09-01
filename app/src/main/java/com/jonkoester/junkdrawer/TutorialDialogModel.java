@@ -7,18 +7,34 @@ public class TutorialDialogModel {
     private String helperTitle;
     private String helperDescription;
     private Direction helperDirection;
+    private XAlignment helperXAlignment;
+    private YAlignment helperYAlignment;
 
     public enum Direction {
         TOP, RIGHT, BOTTOM, LEFT
     }
 
+    public enum XAlignment {
+        LEFT, RIGHT, CENTER
+    }
+
+    public enum YAlignment {
+        TOP, BOTTOM, CENTER
+    }
+
     public TutorialDialogModel(View highLightedView, String helperTitle, String helperDescription, Direction helperDirection) {
+        this(highLightedView, helperTitle, helperDescription, helperDirection, null, null);
+    }
+
+    public TutorialDialogModel(View highLightedView, String helperTitle, String helperDescription, Direction helperDirection, XAlignment xAlignment, YAlignment yAlignment) {
         super();
 
         this.highLightedView = highLightedView;
         this.helperTitle = helperTitle;
         this.helperDescription = helperDescription;
         this.helperDirection = helperDirection;
+        this.helperXAlignment = xAlignment;
+        this.helperYAlignment = yAlignment;
     }
 
     public View getHighLightedView() {
@@ -35,5 +51,13 @@ public class TutorialDialogModel {
 
     public Direction getHelperDirection() {
         return helperDirection;
+    }
+
+    public XAlignment getHelperXAlignment() {
+        return helperXAlignment;
+    }
+
+    public YAlignment getHelperYAlignment() {
+        return helperYAlignment;
     }
 }

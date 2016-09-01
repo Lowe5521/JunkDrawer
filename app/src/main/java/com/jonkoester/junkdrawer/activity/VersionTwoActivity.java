@@ -38,10 +38,10 @@ public class VersionTwoActivity extends Activity {
 
     private void doTheOverlayStuff() {
         Queue<TutorialDialogModel> testQ = new LinkedList<>();
-        testQ.add(new TutorialDialogModel(firstNameTV, "First Name!", "This is obviously where you put the first name", TutorialDialogModel.Direction.BOTTOM));
-        testQ.add(new TutorialDialogModel(genderTV, "Gender", "I remember the days when there were only two options", TutorialDialogModel.Direction.RIGHT));
-        testQ.add(new TutorialDialogModel(testTwo, "Test TV", "This is off in East Jesus for convenience", TutorialDialogModel.Direction.RIGHT));
-        testQ.add(new TutorialDialogModel(personalTableLayout, "Section Test", "Holy shit look at this section of the app!", TutorialDialogModel.Direction.BOTTOM));
+        testQ.add(new TutorialDialogModel(firstNameTV, "First Name!", "This is obviously where you put the first name", TutorialDialogModel.Direction.BOTTOM, TutorialDialogModel.XAlignment.RIGHT, null));
+        testQ.add(new TutorialDialogModel(genderTV, "Gender", "I remember the days when there were only two options", TutorialDialogModel.Direction.RIGHT, null, TutorialDialogModel.YAlignment.CENTER));
+        testQ.add(new TutorialDialogModel(testTwo, "Test TV", "This is off in East Jesus for convenience", TutorialDialogModel.Direction.RIGHT, null, TutorialDialogModel.YAlignment.BOTTOM));
+        testQ.add(new TutorialDialogModel(personalTableLayout, "Section Test", "Holy shit look at this section of the app!", TutorialDialogModel.Direction.BOTTOM, TutorialDialogModel.XAlignment.CENTER, null));
 
         addContentView(new VersionTwoOverlay(this, testQ), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }

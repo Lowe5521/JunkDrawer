@@ -134,13 +134,13 @@ public class VersionTwoOverlay extends RelativeLayout {
 
         switch (tutorialDialogModel.getHelperDirection()) {
             case TOP:
-                y -= versionTwoHelper.getMeasuredHeight() - HELPER_SPACING;
+                y -= versionTwoHelper.getMeasuredHeight() + HELPER_SPACING;
                 break;
             case BOTTOM:
                 y += tutorialDialogModel.getHighLightedView().getHeight() + HELPER_SPACING;
                 break;
             case LEFT:
-                x -= versionTwoHelper.getMeasuredWidth() - HELPER_SPACING;
+                x -= versionTwoHelper.getMeasuredWidth() + HELPER_SPACING;
                 break;
             case RIGHT:
                 x += tutorialDialogModel.getHighLightedView().getWidth() + HELPER_SPACING;
@@ -167,6 +167,7 @@ public class VersionTwoOverlay extends RelativeLayout {
         if (tutorialDialogModel.getHelperYAlignment() != null) {
             switch (tutorialDialogModel.getHelperYAlignment()) {
                 case TOP:
+                    y -= CLIP_PATH_PADDING;
                     break;
                 case BOTTOM:
                     y += tutorialDialogModel.getHighLightedView().getHeight() - versionTwoHelper.getMeasuredHeight() + CLIP_PATH_PADDING;

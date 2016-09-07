@@ -63,17 +63,19 @@ public class VersionTwoOverlay extends RelativeLayout {
         setWillNotDraw(false);
         ButterKnife.bind(this);
 
-        this.tutorialDialogModelQueue = tutorialDialogModelQueue;
-
         if (tutorialDialogModelQueue != null &&
                 !tutorialDialogModelQueue.isEmpty()) {
 
-            tutorialDialogModel = tutorialDialogModelQueue.poll();
+            this.tutorialDialogModelQueue = tutorialDialogModelQueue;
+            this.tutorialDialogModel = tutorialDialogModelQueue.poll();
         }
 
+        initHighlightPaint();
+    }
+
+    private void initHighlightPaint() {
         highlightPaint.setAntiAlias(true);
-        int limeHighlight = ContextCompat.getColor(getContext(), R.color.material_lime_A700);
-        highlightPaint.setColor(limeHighlight);
+        highlightPaint.setColor(ContextCompat.getColor(getContext(), R.color.material_lime_A700));
         highlightPaint.setStyle(Paint.Style.STROKE);
         highlightPaint.setStrokeWidth(HIGHLIGHT_STROKE_WIDTH);
     }

@@ -14,6 +14,8 @@
 
     <!-- Material color palette -->
     <!-- For reference, visit https://material.google.com/style/color.html# -->
+
+    <!-- blue -->
     <color name="material_blue_50">#E3F2FD</color>
     <color name="material_blue_100">#BBDEFB</color>
     <color name="material_blue_200">#90CAF9</color>
@@ -24,4 +26,22 @@
     <color name="material_blue_700">#1976D2</color>
     <color name="material_blue_800">#1565C0</color>
     <color name="material_blue_900">#0D47A1</color>
+
+    <!-- lime -->
+    <color name="material_lime_50">#F9FBE7</color>
+    <color name="material_lime_100">#F0F4C3</color>
+    <color name="material_lime_200">#E6EE9C</color>
+    <color name="material_lime_300">#DCE775</color>
+    <color name="material_lime_400">#D4E157</color>
+    <color name="material_lime_500">#CDDC39</color>
+    <color name="material_lime_600">#C0CA33</color>
+    <color name="material_lime_700">#AFB42B</color>
+    <color name="material_lime_800">#9E9D24</color>
+    <color name="material_lime_900">#827717</color>
+    <color name="material_lime_A100">#F4FF81</color>
+    <color name="material_lime_A200">#EEFF41</color>
+    <color name="material_lime_A400">#C6FF00</color>
+    <color name="material_lime_A700">#AEEA00</color>
+
+    <!-- End Material color palette -->
 </resources>

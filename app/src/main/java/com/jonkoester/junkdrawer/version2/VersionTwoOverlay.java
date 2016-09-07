@@ -2,9 +2,11 @@ package com.jonkoester.junkdrawer.version2;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Region;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,8 +26,10 @@ public class VersionTwoOverlay extends RelativeLayout {
     @BindView(R.id.vTwo_overlay_next_button)
     Button nextButton;
 
-    private RectF rectF = new RectF();
+    private RectF clipRect = new RectF();
     private Path clipPath = new Path();
+    private Path highlightPath = new Path();
+    private Paint highlightPaint = new Paint();
     private boolean removeExistingPath = false;
     private int[] screenPos = new int[2];
     private int[] screenOffset;
@@ -33,8 +37,9 @@ public class VersionTwoOverlay extends RelativeLayout {
     private VersionTwoHelper versionTwoHelper;
     private Queue<TutorialDialogModel> tutorialDialogModelQueue;
 
-    private final static int CLIP_PATH_PADDING = 2;
-    private final static int HELPER_SPACING = 8;
+    private final static int CLIP_PATH_PADDING = 12;
+    private final static int HIGHLIGHT_STROKE_WIDTH = 8;
+    private final static int HELPER_SPACING = 16;
     private final static int CORNER_RADIUS = 12;
 
     public VersionTwoOverlay(Context context) {
@@ -65,6 +70,12 @@ public class VersionTwoOverlay extends RelativeLayout {
 
             tutorialDialogModel = tutorialDialogModelQueue.poll();
         }
+
+        highlightPaint.setAntiAlias(true);
+        int limeHighlight = ContextCompat.getColor(getContext(), R.color.material_lime_A700);
+        highlightPaint.setColor(limeHighlight);
+        highlightPaint.setStyle(Paint.Style.STROKE);
+        highlightPaint.setStrokeWidth(HIGHLIGHT_STROKE_WIDTH);
     }
 
     //endregion
@@ -92,14 +103,18 @@ public class VersionTwoOverlay extends RelativeLayout {
             if (removeExistingPath) {
                 canvas.clipPath(clipPath, Region.Op.UNION);
                 clipPath.reset();
+                highlightPath.reset();
                 removeExistingPath = false;
             }
 
-            rectF.set(getXOffset() - CLIP_PATH_PADDING,
+            clipRect.set(getXOffset() - CLIP_PATH_PADDING,
                     getYOffset() - CLIP_PATH_PADDING,
                     getXOffset() + tutorialDialogModel.getHighLightedView().getWidth() + CLIP_PATH_PADDING,
                     getYOffset() + tutorialDialogModel.getHighLightedView().getHeight() + CLIP_PATH_PADDING);
-            clipPath.addRoundRect(rectF, CORNER_RADIUS, CORNER_RADIUS, Path.Direction.CW);
+            clipPath.addRoundRect(clipRect, CORNER_RADIUS, CORNER_RADIUS, Path.Direction.CW);
+            highlightPath.addRoundRect(clipRect, CORNER_RADIUS, CORNER_RADIUS, Path.Direction.CW);
+
+            canvas.drawPath(highlightPath, highlightPaint);
             canvas.clipPath(clipPath, Region.Op.DIFFERENCE);
         }
     }
@@ -139,7 +154,7 @@ public class VersionTwoOverlay extends RelativeLayout {
                 case LEFT:
                     break;
                 case RIGHT:
-                    x += (tutorialDialogModel.getHighLightedView().getWidth() - versionTwoHelper.getMeasuredWidth()) > 0 ? (tutorialDialogModel.getHighLightedView().getWidth() - versionTwoHelper.getMeasuredWidth()) : 0;
+                    x += (tutorialDialogModel.getHighLightedView().getWidth() - versionTwoHelper.getMeasuredWidth() + CLIP_PATH_PADDING) > 0 ? (tutorialDialogModel.getHighLightedView().getWidth() - versionTwoHelper.getMeasuredWidth() + CLIP_PATH_PADDING) : 0;
                     break;
                 case CENTER:
                     x += (tutorialDialogModel.getHighLightedView().getWidth() / 2) - (versionTwoHelper.getMeasuredWidth() / 2);
@@ -154,7 +169,7 @@ public class VersionTwoOverlay extends RelativeLayout {
                 case TOP:
                     break;
                 case BOTTOM:
-                    y += (tutorialDialogModel.getHighLightedView().getHeight() - versionTwoHelper.getMeasuredHeight()) > 0 ? (tutorialDialogModel.getHighLightedView().getHeight() - versionTwoHelper.getMeasuredHeight()) : 0;
+                    y += tutorialDialogModel.getHighLightedView().getHeight() - versionTwoHelper.getMeasuredHeight() + CLIP_PATH_PADDING;
                     break;
                 case CENTER:
                     y += (tutorialDialogModel.getHighLightedView().getHeight() / 2) - (versionTwoHelper.getMeasuredHeight() / 2);
